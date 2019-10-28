@@ -21,15 +21,20 @@ namespace Clac
     /// 
 
     public partial class MainWindow : Window {
+        private const string ERRORMSG = "ERROR";
         private const string NOOPERATOR = "NULL";
-        private string ContenOfInputVal = "0";
+
+        private string ContentOfInputVal = "0";
         private string NowOperatorVal = NOOPERATOR;
         private double Result = 0.0f;
-        private List<string> OPList= new List<string>{ "btPlus", "btMinus", "btMultiply", "btDivide" };
+        private bool ERRORINFO = false;
+        private bool NEEDCLEAR = true;
+
+        private readonly List<string> OPList= new List<string>{ "btPlus", "btMinus", "btMultiply", "btDivide" };
 
         public string ContentOfInput {
-            get => ContenOfInputVal; set {
-                ContenOfInputVal = value;
+            get => ContentOfInputVal; set {
+                ContentOfInputVal = value;
                 ContentBox.Text = value;
             }
         }
@@ -45,25 +50,44 @@ namespace Clac
             ContentOfInput = "0";
             NowOperator = (string)btPlus.Content;
             Result = 0.0f;
+            ERRORINFO = false;
+            NEEDCLEAR = true;
         }
 
         private void BtNumberClick(object sender, RoutedEventArgs e) {
             Button button = (Button)sender;
-            if(NowOperator != NOOPERATOR) {
+            if(!ERRORINFO && NowOperator != NOOPERATOR) {
+                if (NEEDCLEAR) {
+                    ContentOfInput = "0";
+                    NEEDCLEAR = false;
+                }
                 if(button.Name != "btDot" && ContentOfInput == "0")
                     ContentOfInput = "";
                 ContentOfInput += button.Content;
             }
-                
-
         }
 
         private void BtOpClick(object sender, RoutedEventArgs e) {
             Button button = (Button)sender;
-            
-            if(OPList.Exists(exist=>exist == button.Name)){
+            if (ERRORINFO) return;
+            if (OPList.Exists(exist => exist == button.Name)) {
+                Result = EvalExpr(Result.ToString(), NowOperator, ContentOfInput);
+                ContentOfInput = ERRORINFO ? ERRORMSG : Result.ToString();
                 NowOperator = (string)button.Content;
+            } else if (button.Name == "btEqual") {
+                double result = EvalExpr(Result.ToString(), NowOperator, ContentOfInput);
+                reset();
+                ContentOfInput = ERRORINFO ? ERRORMSG : result.ToString();
+            }else if (button.Name == "btInverse") {
+                try {
+                    ContentOfInput = (-Convert.ToDouble(ContentOfInput)).ToString();
+                } catch {
+                    ERRORINFO = true;
+                    ContentOfInput = ERRORMSG;
+                }
+                
             }
+            NEEDCLEAR = true;
         }
 
         // Finished.
@@ -75,7 +99,7 @@ namespace Clac
                     break;
                 case "btBack":
                     if (ContentOfInput.Length == 1) { ContentOfInput = "0"; break; };
-                    ContentOfInput = ContentOfInput.Substring(0, ContentOfInput.Length - 1);
+                    ContentOfInput = ContentOfInput[0..^1];
                     break;
             }
         }
@@ -83,6 +107,24 @@ namespace Clac
         //Finished.
         private void ShowOperator(string op) {
             OpShow.Content = op;
+        }
+
+        private double EvalExpr(string a, string op, string b) {
+            double dA = Convert.ToDouble(a), dB = Convert.ToDouble(b);
+            switch (op) {
+                case "＋":
+                    return dA + dB;
+                case "－":
+                    return dA - dB;
+                case "×":
+                    Console.WriteLine("Fuck");
+                    return dA * dB;
+                case "÷":
+                    if (Math.Abs(dB - 0) < 1e-10) ERRORINFO = true;
+                    return dA / dB;
+            }
+            ERRORINFO = true;
+            return 0.0f;
         }
     }
 }

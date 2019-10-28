@@ -5,14 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clac"
         mc:Ignorable="d"
-        Title="XCa1c" Height="450" Width="264" WindowStyle="ToolWindow">
+
+        Title="XCa1c" Height="450" Width="264" WindowStyle="ToolWindow" Background="{x:Null}">
+
     <Window.Foreground>
         <SolidColorBrush Color="White" Opacity="1"/>
     </Window.Foreground>
-    <Window.Background>
-        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoTextColorKey}}" Opacity="1"/>
-    </Window.Background>
-    <Grid HorizontalAlignment="Stretch">
+    <Grid Margin="1,0,-1,0">
         <Grid.Background>
             <SolidColorBrush Color="White" Opacity="0"/>
         </Grid.Background>
@@ -25,10 +24,10 @@
         <Label x:Name="OpShow" Content="+" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Height="25" Width="25" Foreground="White" FontSize="15" FontWeight="Normal" FontStyle="Normal" FontStretch="Normal" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Captain America"/>
 
         <TextBlock x:Name="ContentBox"
-                   Text ="" Margin="0,2,0,0"
+                   Text =""
                    TextAlignment="Right"
                    VerticalAlignment="Top"
-                   FontSize="60px" FontFamily="Agency FB" TextWrapping="WrapWithOverflow" Grid.Row="1"
+                   FontSize="60px" FontFamily="Agency FB" TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="2,0,4,0"
                    >
             <TextBlock.Foreground>
                 <SolidColorBrush Color="White" Opacity="1"/>
@@ -115,12 +114,12 @@
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuHighlightColorKey}}" Opacity="1"/>
                 </Button.Background>
             </Button>
-            <Button  x:Name="btPlus" Content="+" Click="BtOpClick" Margin="1,1,1,1" Visibility="Visible" Grid.Row="3" FontFamily="Agency FB" FontSize="24" Grid.Column="3" Foreground="White">
+            <Button  x:Name="btPlus" Content="＋" Click="BtOpClick" Margin="1,1,1,1" Visibility="Visible" Grid.Row="3" FontFamily="Agency FB" FontSize="24" Grid.Column="3" Foreground="White">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuHighlightColorKey}}" Opacity="1"/>
                 </Button.Background>
             </Button>
-            <Button  x:Name="btMinus" Content="-" Click="BtOpClick" Margin="1,1,1,1" Visibility="Visible" Grid.Row="2" FontFamily="Agency FB" FontSize="24" Grid.Column="3" Foreground="White">
+            <Button  x:Name="btMinus" Content="－" Click="BtOpClick" Margin="1,1,1,1" Visibility="Visible" Grid.Row="2" FontFamily="Agency FB" FontSize="24" Grid.Column="3" Foreground="White">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuHighlightColorKey}}" Opacity="1"/>
                 </Button.Background>
