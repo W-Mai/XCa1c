@@ -7,4 +7,4 @@
 
 ## 预览图
 
-![image](https://github.com/W-Mai/XCa1c/blob/master/XCa1c.gif.gif)
+![image](XCa1c.gif.gif)
