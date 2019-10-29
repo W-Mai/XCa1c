@@ -23,7 +23,16 @@ namespace Clac
 
         private readonly List<string> OPList = new List<string> { "btPlus", "btMinus", "btMultiply", "btDivide" };
 
-        public string ContentOfInput { get => ContentOfInputVal; set { ContentOfInputVal = value; ContentBox.Text = value; } }
+        public string ContentOfInput { get => ContentOfInputVal;
+            set {
+                ContentOfInputVal = value;
+                ContentBox.Text = value;
+
+                if (ContentBox.Text.Length >= 10)
+                    ContentBox.FontSize = 30;
+                else if (ContentBox.Text.Length<=10)ContentBox.FontSize = 60;
+            }
+        }
 
         public string NowOperator { get => NowOperatorVal; set { NowOperatorVal = value; ShowOperator(value); } }
 
@@ -114,6 +123,15 @@ namespace Clac
             }
             ERRORINFO = true;
             return 0.0f;
+        }
+
+
+     
+
+        private void InputViewChanged(object sender, System.Windows.Data.DataTransferEventArgs e) {
+            TextBlock textBlock = (TextBlock)sender;
+            
+            MessageBox.Show("");
         }
     }
 }

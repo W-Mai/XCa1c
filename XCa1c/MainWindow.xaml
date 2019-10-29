@@ -26,7 +26,7 @@
         <TextBlock x:Name="ContentBox"
                    Text =""
                    TextAlignment="Right"
-                   VerticalAlignment="Top"
+                   VerticalAlignment="Bottom"
                    FontSize="60px" FontFamily="Agency FB" TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="2,0,4,0"
                    >
             <TextBlock.Foreground>
