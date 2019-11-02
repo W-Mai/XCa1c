@@ -27,7 +27,7 @@
                    Text =""
                    TextAlignment="Right"
                    VerticalAlignment="Bottom"
-                   FontSize="60px" FontFamily="Agency FB" TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="2,0,4,0"
+                   FontSize="60px" FontFamily="Dubai" TextWrapping="WrapWithOverflow" Grid.Row="1" Margin="2,0,4,0"
                    >
             <TextBlock.Foreground>
                 <SolidColorBrush Color="White" Opacity="1"/>
